@@ -8,15 +8,15 @@ export const Home = () => {
 
   const userID = useGetUserID();
 
-  useEffect(() => {
-  const fetchRecipes = async () => {
-    try {
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/recipes`);
-      setRecipes([recipe, ...response.data]); // Add the new recipe at the beginning
-    } catch (err) {
-      console.log(err);
-    }
-  };
+    useEffect(() => {
+    const fetchRecipes = async () => {
+      try {
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/recipes`);
+        setRecipes(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
     const fetchSavedRecipes = async () => {
       try {
