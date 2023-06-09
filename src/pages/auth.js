@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import './auth.css'
 
 export const Auth = () => {
   return (
