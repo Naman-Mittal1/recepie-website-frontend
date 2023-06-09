@@ -17,6 +17,16 @@ export const Home = () => {
         console.log(err);
       }
     };
+      
+    const deleteRecipe = async (recipeID) => {
+    try {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/recipes/${recipeID}`);
+      // Remove the deleted recipe from the recipes state
+      setRecipes(recipes.filter((recipe) => recipe._id !== recipeID));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
     const fetchSavedRecipes = async () => {
       try {
@@ -61,6 +71,7 @@ export const Home = () => {
               >
                 {isRecipeSaved(recipe._id) ? "Saved" : "Save"}
               </button>
+              <button onClick={() => deleteRecipe(recipe._id)}>Delete</button> {/* Add the delete button */}
             </div>
             <div className="instructions">
               <p>{recipe.instructions}</p>
