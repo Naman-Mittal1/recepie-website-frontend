@@ -1,8 +1,8 @@
-import React, { useState } from "react";
 import axios from "axios";
-import { useGetUserID } from "../hooks/useGetUserID";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
+import { useGetUserID } from "../hooks/useGetUserID";
 
 export const CreateRecipe = () => {
   const userID = useGetUserID();
@@ -40,7 +40,7 @@ export const CreateRecipe = () => {
     event.preventDefault();
     try {
       await axios.post(
-        "http://localhost:3001/recipes",
+        `${process.env.REACT_APP_API_URL}/recipes`,
         { ...recipe },
         {
           headers: { authorization: cookies.access_token },
