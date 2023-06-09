@@ -5,10 +5,9 @@ import { useGetUserID } from "../hooks/useGetUserID";
 export const Home = () => {
   const [recipes, setRecipes] = useState([]);
   const [savedRecipes, setSavedRecipes] = useState([]);
-
   const userID = useGetUserID();
 
-    useEffect(() => {
+  useEffect(() => {
     const fetchRecipes = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/recipes`);
@@ -17,16 +16,6 @@ export const Home = () => {
         console.log(err);
       }
     };
-      
-    const deleteRecipe = async (recipeID) => {
-    try {
-      await axios.delete(`${process.env.REACT_APP_API_URL}/recipes/${recipeID}`);
-      // Remove the deleted recipe from the recipes state
-      setRecipes(recipes.filter((recipe) => recipe._id !== recipeID));
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
     const fetchSavedRecipes = async () => {
       try {
@@ -41,7 +30,17 @@ export const Home = () => {
 
     fetchRecipes();
     fetchSavedRecipes();
-  }, []);
+  }, [userID]);
+
+  const deleteRecipe = async (recipeID) => {
+    try {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/recipes/${recipeID}`);
+      // Remove the deleted recipe from the recipes state
+      setRecipes(recipes.filter((recipe) => recipe._id !== recipeID));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const saveRecipe = async (recipeID) => {
     try {
