@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useGetUserID } from "../hooks/useGetUserID";
+import './create-recipe.css'
 
 export const CreateRecipe = () => {
   const userID = useGetUserID();
