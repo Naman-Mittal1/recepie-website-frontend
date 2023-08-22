@@ -19,7 +19,7 @@ export const SavedRecipes = () => {
     };
 
     fetchSavedRecipes();
-  }, []);
+  }, [userID]);
   return (
     <div>
       <h1>Saved Recipes</h1>
